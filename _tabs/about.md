@@ -10,5 +10,4 @@ order: 4
 # MIT License
 ---
 
-
-> **Note**: Add Markdown syntax content to file `_tabs/about.md` and it will show up on this page.
+Hi all, my name is Serdar and this my github blog. My interests are in software development, physics and other random stuff.

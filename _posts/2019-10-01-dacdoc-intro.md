@@ -1,5 +1,5 @@
 ---
-title: [Technical] Documentation As Code With DacDoc
+title: Documentation As Code With DacDoc
 author: Serdar Kurbanov
 date: 2019-10-01 20:55:00 -0500
 categories: [Blogging, Tutorial]
@@ -23,8 +23,10 @@ Components that can be used to implement this idea are:
 * general purpose language to implement custom checks
 * a way to compile raw documentation into tested version
 
-I used git, java and maven to build an open source maven plugin that takes markdown files, searches for testable fragments, checks them for validity and produces the compiled version of a documentation where testable fragments are provided with valid/invlid indicators.
-links checked with dacdoc-maven-pluginThe name of the maven plugin - dacdoc - refers to documentation-as-code approach. You can find the documentation for the project here. There you can also find the example page that is built using same plugin with some checked statements.
+I used git, java and maven to build an open source maven plugin that takes markdown files, searches for testable fragments, checks them for validity and produces the compiled version of a documentation where testable fragments are provided with valid/invalid indicators.
+![links checked with dacdoc-maven-plugin](/assets/img/sample/2019-10-01-dacdoc-intro/dacdoc_img_2.png){: width="650" class="normal"}
+
+The name of the maven plugin - dacdoc - refers to documentation-as-code approach. You can find the documentation for the project here. There you can also find the example page that is built using same plugin with some checked statements.
 Prerequisites
 To create documentation and compile it with dacdoc-maven-plugin you'll need some things installed on your machine:
 * java (1.8+)
@@ -33,20 +35,26 @@ To create documentation and compile it with dacdoc-maven-plugin you'll need some
 
 ## Testable fragments
 DacDoc plugin reads through markdown files and looks for testable fragments, then checks them. To make a piece of documentation testable and let dacdoc-maven-plugin recognize it one should surround it with DACDOC keyword and exclamation signs. For example, this is how a link to Medium will look like if turned into a testable fragment.
-!DACDOC{[medium](https://www.medium.com)}!
+> !DACDOC{[medium](https://www.medium.com)}!
+
 For custom checks test id should be given as well:
-!DACDOC{my custom testable fragment}(test=myCustomCheck)!
+> !DACDOC{my custom testable fragment}(test=myCustomCheck)!
+
 After compilation dacdoc will remove DACDOC keyword, leave the fragment intact and add validity indicator. So this fragment above will turn into something like this:
-![...](dacdoc-resources/circle-red-12px.png) my custom testable fragment
+> ![...](dacdoc-resources/circle-red-12px.png) my custom testable fragment
 
 ## Documentation as code
 dacdoc-maven-plugin treats your documentation folder as maven project so you'll need pom.xml in the root of the documentation project to make it work. The essential part of pom file is reference to plugin, so you can run compile command. The best example would be pom file that is used in dacdoc project itself - you can find it here.
 
 Compiling your documentation is done with compile comand. It transforms your markdown files, supplementing testable fragments with validity indicators.
+```terminal
 mvn com.github.flussig:dacdoc-maven-plugin:compile
+```
 
 To fully utilize the capabilities of dacdoc-maven-plugin your documentation should be kept in git repo. Git blame is then used to get the history of changes of a given markdown file. When you hover over a validity indicator it will show a history info associated with this fragment.
-using git blame dacdoc-maven-plugin attaches history for a given tested linkCustom checks are defined in classes that inherit from base Check or SingleExecutionCheck class defined in dacdoc-check module. Classes should be placed where maven expects them: in src/main/java or src/test/java directories. Essential part is that the class must override performCheck methods and use constructor that takes argument and reference to the documentation file.
+![dacdoc-maven-plugin attaches history for a given tested link using git blame](/assets/img/sample/2019-10-01-dacdoc-intro/dacdoc_img_3.png){: width="650" class="normal"}
+
+Custom checks are defined in classes that inherit from base `Check` or `SingleExecutionCheck` class defined in dacdoc-check module. Classes should be placed where maven expects them: in `src/main/java` or `src/test/java` directories. Essential part is that the class must override performCheck methods and use constructor that takes argument and reference to the documentation file.
 
 
 
@@ -58,12 +66,14 @@ When using DacDoc it's convenient to keep raw version of documentation in one br
 For example, here's the Travis CI file from gh-pages-development branch of dacdoc project (it plays the role of development branch for github pages documentation whereas gh-pages branch plays the role of release branch). This CI job builds documentation for the project nightly and every time new commit is pushed to the gh-pages-development branch.
 
 This is what happens in CI step by step:
+```terminal
 git checkout -b gh-pages; git pull; | checkout documentation release branch and pull from origin
 git reset --hard gh-pages-development; | replace all content with files from documentation development branch
 mvn clean compile; |compile documentation project (necessary step if there are custom checks)
 mvn com.github.flussig:dacdoc-maven-plugin:compile; | run dacdoc-maven-plugin and perform all the checks
 git add .; git commit -m "release documentation"; | commit changes to release branch
 git push --force gh-pages; | push to release origin
+```
 
 ## Pros/Cons
 Some of the benefits of DacDoc approach to documentation are:
@@ -80,5 +90,7 @@ Contributions are very welcome (along with thoughts, comments and criticism of t
 
 ## Resources
 [dacdoc github repo](https://github.com/flussig/dacdoc)
+
 [dacdoc github pages](https://flussig.github.io/dacdoc/#/)
+
 [dacdoc example documentation page](https://flussig.github.io/dacdoc/#/docs/example)

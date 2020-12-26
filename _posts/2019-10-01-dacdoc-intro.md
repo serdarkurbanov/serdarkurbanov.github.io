@@ -2,8 +2,8 @@
 title: Documentation As Code With DacDoc
 author: Serdar Kurbanov
 date: 2019-10-01 20:55:00 -0500
-categories: [Blogging, Tutorial]
-tags: [dacdoc]
+categories: [Blogging, Technical]
+tags: [dacdoc, documentation, programming]
 pin: true
 image: /assets/img/sample/2019-10-01-dacdoc-intro/dacdoc_img_1.jpeg
 ---

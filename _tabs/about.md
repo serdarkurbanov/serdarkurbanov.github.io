@@ -11,7 +11,3 @@ order: 4
 ---
 
 Hi all, my name is Serdar and this my github blog. My interests are in software development, physics and other random stuff.
-
-## Attributions
-Jekyll theme: https://github.com/cotes2020/jekyll-theme-chirpy/
-Icon: https://www.flaticon.com/authors/freepik

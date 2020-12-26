@@ -12,11 +12,11 @@ image: /assets/img/sample/2019-10-01-dacdoc-intro/dacdoc_img_1.jpeg
 Nearly every project I was working on had problems with a technical documentation (unless a project didn't have it in the first place). It always starts clear and nice and then with the growth of a project it becomes a mess.
 
 There are few typical flaws in the documentation that make it bad:
-* lack of documentation. Making documentation is often a secondary priority. Sad but true.
-* outdated documentation. Most often this is ghost links - someone had put down a list of resources and it got outdated.
-* duplicate documentation. This usually happens when documentation is already quite big and no one is sure if it's up-to-date. Then instead of rewriting it users put additional page of documentation that contains some new information and also duplicates some pieces of already existing documents.
+* *lack of documentation*. Making documentation is often a secondary priority. Sad but true.
+* *outdated documentation*. Most often this is ghost links - someone had put down a list of resources and it got outdated.
+* *duplicate documentation*. This usually happens when documentation is already quite big and no one is sure if it's up-to-date. Then instead of rewriting it users put additional page of documentation that contains some new information and also duplicates some pieces of already existing documents.
 
-What would help keeping documentation alive is introducing testable fragments and providing a way to let reader know if certain pieces of a documentation are still valid (and if not - when it got changed and who changed it). Testable fragments can be project-specific, one of the most evident cases is checking ghost links, but generally speaking would be better to provide a way to generate custom checks around testable fragments. Examples can be checking DB connection, checking sequence of bash commands, checking list of users etc.
+What would help keeping documentation alive is introducing *testable fragments* and providing a way to let reader know if certain pieces of a documentation are still valid (and if not - when it got changed and who changed it). Testable fragments can be project-specific, one of the most evident cases is checking ghost links, but generally speaking would be better to provide a way to generate custom checks around testable fragments. Examples can be checking DB connection, checking sequence of bash commands, checking list of users etc.
 
 Components that can be used to implement this idea are:
 * repo
@@ -44,7 +44,7 @@ After compilation dacdoc will remove DACDOC keyword, leave the fragment intact a
 > ![...](dacdoc-resources/circle-red-12px.png) my custom testable fragment
 
 ## Documentation as code
-dacdoc-maven-plugin treats your documentation folder as maven project so you'll need pom.xml in the root of the documentation project to make it work. The essential part of pom file is reference to plugin, so you can run compile command. The best example would be pom file that is used in dacdoc project itself - you can find it here.
+dacdoc-maven-plugin treats your documentation folder as maven project so you'll need `pom.xml` in the root of the documentation project to make it work. The essential part of pom file is reference to plugin, so you can run compile command. The best example would be pom file that is used in dacdoc project itself - you can find it here.
 
 Compiling your documentation is done with compile comand. It transforms your markdown files, supplementing testable fragments with validity indicators.
 ```terminal
@@ -67,11 +67,11 @@ For example, here's the Travis CI file from gh-pages-development branch of dacdo
 
 This is what happens in CI step by step:
 ```terminal
-git checkout -b gh-pages; git pull; | checkout documentation release branch and pull from origin
-git reset --hard gh-pages-development; | replace all content with files from documentation development branch
-mvn clean compile; |compile documentation project (necessary step if there are custom checks)
-mvn com.github.flussig:dacdoc-maven-plugin:compile; | run dacdoc-maven-plugin and perform all the checks
-git add .; git commit -m "release documentation"; | commit changes to release branch
+git checkout -b gh-pages; git pull; | checkout documentation release branch and pull from origin \
+git reset --hard gh-pages-development; | replace all content with files from documentation development branch \
+mvn clean compile; |compile documentation project (necessary step if there are custom checks) \
+mvn com.github.flussig:dacdoc-maven-plugin:compile; | run dacdoc-maven-plugin and perform all the checks \
+git add .; git commit -m "release documentation"; | commit changes to release branch \
 git push --force gh-pages; | push to release origin
 ```
 

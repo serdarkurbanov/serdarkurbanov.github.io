@@ -7,7 +7,6 @@ tags: [academia, advice, experience]
 image: /assets/img/sample/2020-12-26-exit-plans/escher_transformation.jpg
 ---
 
-## *Intro*
 I talked to my friend the other day, he currently works in academia. We talked about his satisfaction with a job. He loves it but is overworking so much that I feel that he pays a toll – stressing out, feeling obliged to work on Christmas Eve etc. I mentioned to him that it would be a good idea to reflect on this situation and prepare an exit plan (not necessarily to execute it!).
 
 I'd like to write down what I mean by exit plan and lay out some advice on resolving difficulties in your life based on my past experience. I remember giving a similar advice to a colleague some time back and I believe it’s pretty universal and not only limited to academia or even to work domain in general.

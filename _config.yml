@@ -50,20 +50,20 @@ baseurl: ''
 # Change to your timezone › http://www.timezoneconverter.com/cgi-bin/findzone/findzone
 timezone: America/New_York
 
-google_analytics:
-  id: ''          # Fill with your Google Analytics ID
-  pv:
-    # The Google Analytics pageviews switch.
-    # DO NOT enable it unless you know how to deploy the Google Analytics superProxy.
-    enabled: false
-    # the next options only valid when `google_analytics.pv` is enabled.
-    proxy_url: ''
-    proxy_endpoint: ''
-    cache: false  # pv data local cache, good for the users from GFW area.
-
-disqus:
-  comments: false  # boolean type, the global switch for posts comments.
-  shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
+# google_analytics:
+#   id: ''          # Fill with your Google Analytics ID
+#   pv:
+#     # The Google Analytics pageviews switch.
+#     # DO NOT enable it unless you know how to deploy the Google Analytics superProxy.
+#     enabled: false
+#     # the next options only valid when `google_analytics.pv` is enabled.
+#     proxy_url: ''
+#     proxy_endpoint: ''
+#     cache: false  # pv data local cache, good for the users from GFW area.
+#
+# disqus:
+#   comments: false  # boolean type, the global switch for posts comments.
+#   shortname: ''    # Fill with your Disqus shortname. › https://help.disqus.com/en/articles/1717111-what-s-a-shortname
 
 
 # Prefer color scheme setting.

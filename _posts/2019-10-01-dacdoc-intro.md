@@ -25,6 +25,7 @@ Components that can be used to implement this idea are:
 
 I used git, java and maven to build an open source maven plugin that takes markdown files, searches for testable fragments, checks them for validity and produces the compiled version of a documentation where testable fragments are provided with valid/invalid indicators.
 ![links checked with dacdoc-maven-plugin](/assets/img/sample/2019-10-01-dacdoc-intro/dacdoc_img_2.png){: width="650" class="normal"}
+_links checked with dacdoc-maven-plugin_
 
 The name of the maven plugin - dacdoc - refers to documentation-as-code approach. You can find the documentation for the project here. There you can also find the example page that is built using same plugin with some checked statements.
 Prerequisites
@@ -35,24 +36,31 @@ To create documentation and compile it with dacdoc-maven-plugin you'll need some
 
 ## Testable fragments
 DacDoc plugin reads through markdown files and looks for testable fragments, then checks them. To make a piece of documentation testable and let dacdoc-maven-plugin recognize it one should surround it with DACDOC keyword and exclamation signs. For example, this is how a link to Medium will look like if turned into a testable fragment.
-> !DACDOC{[medium](https://www.medium.com)}!
+```md
+!DACDOC{[medium](https://www.medium.com)}!
+```
 
 For custom checks test id should be given as well:
-> !DACDOC{my custom testable fragment}(test=myCustomCheck)!
+```md
+!DACDOC{my custom testable fragment}(test=myCustomCheck)!
+```
 
 After compilation dacdoc will remove DACDOC keyword, leave the fragment intact and add validity indicator. So this fragment above will turn into something like this:
-> ![...](dacdoc-resources/circle-red-12px.png) my custom testable fragment
+```md
+![...](dacdoc-resources/circle-red-12px.png) my custom testable fragment
+```
 
 ## Documentation as code
 dacdoc-maven-plugin treats your documentation folder as maven project so you'll need `pom.xml` in the root of the documentation project to make it work. The essential part of pom file is reference to plugin, so you can run compile command. The best example would be pom file that is used in dacdoc project itself - you can find it here.
 
 Compiling your documentation is done with compile comand. It transforms your markdown files, supplementing testable fragments with validity indicators.
-```terminal
+```shell
 mvn com.github.flussig:dacdoc-maven-plugin:compile
 ```
 
 To fully utilize the capabilities of dacdoc-maven-plugin your documentation should be kept in git repo. Git blame is then used to get the history of changes of a given markdown file. When you hover over a validity indicator it will show a history info associated with this fragment.
 ![dacdoc-maven-plugin attaches history for a given tested link using git blame](/assets/img/sample/2019-10-01-dacdoc-intro/dacdoc_img_3.png){: width="650" class="normal"}
+_dacdoc-maven-plugin attaches history for a given tested link using git blame_
 
 Custom checks are defined in classes that inherit from base `Check` or `SingleExecutionCheck` class defined in dacdoc-check module. Classes should be placed where maven expects them: in `src/main/java` or `src/test/java` directories. Essential part is that the class must override performCheck methods and use constructor that takes argument and reference to the documentation file.
 
@@ -66,7 +74,7 @@ When using DacDoc it's convenient to keep raw version of documentation in one br
 For example, here's the Travis CI file from gh-pages-development branch of dacdoc project (it plays the role of development branch for github pages documentation whereas gh-pages branch plays the role of release branch). This CI job builds documentation for the project nightly and every time new commit is pushed to the gh-pages-development branch.
 
 This is what happens in CI step by step:
-```console
+```shell
 git checkout -b gh-pages; git pull; | checkout documentation release branch and pull from origin
 
 git reset --hard gh-pages-development; | replace all content with files from documentation development branch

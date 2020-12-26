@@ -64,7 +64,7 @@ _dacdoc-maven-plugin attaches history for a given tested link using git blame_
 
 Custom checks are defined in classes that inherit from base `Check` or `SingleExecutionCheck` class defined in dacdoc-check module. Classes should be placed where maven expects them: in `src/main/java` or `src/test/java` directories. Essential part is that the class must override performCheck methods and use constructor that takes argument and reference to the documentation file.
 
-
+<script src="https://gist.github.com/serdarkurbanov/ff9add6228c6e7dc43cbefedd5ef430b.js"></script>
 
 user-defined check for dacdoc-maven-pluginExample of such a user-defined check can be found in the code for github pages documentation of dacdoc project (here).
 

@@ -66,7 +66,9 @@ Custom checks are defined in classes that inherit from base `Check` or `SingleEx
 
 <script src="https://gist.github.com/serdarkurbanov/ff9add6228c6e7dc43cbefedd5ef430b.js"></script>
 
-user-defined check for dacdoc-maven-pluginExample of such a user-defined check can be found in the code for github pages documentation of dacdoc project (here).
+user-defined check for dacdoc-maven-plugin ^^
+
+Example of such a user-defined check can be found in the code for github pages documentation of dacdoc project (here).
 
 ## Continuous delivery of documentation
 When using DacDoc it's convenient to keep raw version of documentation in one branch (development) and compiled version in another (release). Then it's possible to build a CI/CD pipeline to compile and push documentation from development to release.
@@ -74,18 +76,29 @@ When using DacDoc it's convenient to keep raw version of documentation in one br
 For example, here's the Travis CI file from gh-pages-development branch of dacdoc project (it plays the role of development branch for github pages documentation whereas gh-pages branch plays the role of release branch). This CI job builds documentation for the project nightly and every time new commit is pushed to the gh-pages-development branch.
 
 This is what happens in CI step by step:
+1. checkout documentation release branch and pull from origin
 ```console
-$ git checkout -b gh-pages; git pull; | checkout documentation release branch and pull from origin
-
-$ git reset --hard gh-pages-development; | replace all content with files from documentation development branch
-
-$ mvn clean compile; |compile documentation project (necessary step if there are custom checks)
-
-$ mvn com.github.flussig:dacdoc-maven-plugin:compile; | run dacdoc-maven-plugin and perform all the checks
-
-$ git add .; git commit -m "release documentation"; | commit changes to release branch
-
-$ git push --force gh-pages; | push to release origin
+$ git checkout -b gh-pages; git pull;
+```
+2. replace all content with files from documentation development branch
+```console
+$ git reset --hard gh-pages-development;
+```
+3. compile documentation project (necessary step if there are custom checks)
+```console
+$ mvn clean compile;
+```
+4. run dacdoc-maven-plugin and perform all the checks
+```console
+$ mvn com.github.flussig:dacdoc-maven-plugin:compile;
+```
+5. commit changes to release branch
+```console
+$ git add .; git commit -m "release documentation";
+```
+6. push to release origin
+```console
+$ git push --force gh-pages;
 ```
 
 ## Pros/Cons

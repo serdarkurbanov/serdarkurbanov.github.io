@@ -41,7 +41,7 @@ _stop-loss signal_
 > Here I’d like to thank my advisor Craig Group – thanks to him I had an opportunity to defend MSc thesis instead of the originally planned PhD, so the 2.5 year effort brought some fruit.
 
 ## **Don’t act from your low point**
-Tolstoy said (well, almost) that happy people are alike; unhappy ones feel satisfaction and dissatisfaction unevenly – they usually come in cycles. Once you face some troubles in work or life in general, your mood starts bouncing up and down in a wave-like fashion. Our low points – when we are dissatisfied the most – are usually the most calling times. One may feel the urge to cut ties, act harshly and swiftly. It’s almost never a good idea. Better idea would be to wait until the mood will climb back again (hours/days) and then make any actions about the situation.
+Tolstoy said ([well, almost](https://www.goodreads.com/quotes/7142-all-happy-families-are-alike-each-unhappy-family-is-unhappy)) that happy people are alike; unhappy ones feel satisfaction and dissatisfaction unevenly – they usually come in cycles. Once you face some troubles in work or life in general, your mood starts bouncing up and down in a wave-like fashion. Our low points – when we are dissatisfied the most – are usually the most calling times. One may feel the urge to cut ties, act harshly and swiftly. It’s almost never a good idea. Better idea would be to wait until the mood will climb back again (hours/days) and then make any actions about the situation.
 The flip side of this rule is the need to acknowledge problems even when the mood is in its high state.
 
 ![high-low](/assets/img/sample/2020-12-26-exit-plans/high_low_point.png){: width="550" }

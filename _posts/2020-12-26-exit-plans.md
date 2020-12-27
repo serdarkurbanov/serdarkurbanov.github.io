@@ -30,7 +30,7 @@ My first full time software engineering job was in finance, hence some concepts 
 
 Outside of stock market this is still a useful concept. It’s necessary to define criteria for success and failure in whatever you do. It’s also useful to define criteria when failure becomes big enough to stop doing what you’re doing and try different approach/change field etc.
 
-![stop-loss](/assets/img/sample/2020-12-26-exit-plans/stop_loss.png){: width="350" class="normal" .right}
+![stop-loss](/assets/img/sample/2020-12-26-exit-plans/stop_loss.png){: width="500" class="normal"}
 _stop-loss signal_
 
 My example is the relocation to the US and starting a grad school here. When setting up success/failure criteria I tried to account for both objective factors and how I’d feel about them. I understood for instance that to feel successful and accomplished in physics I’d need to perform better (have more articles, be more involved in research) than required for average PhD defense. So my criteria for success was to finish all grad level courses and publish at least 1 paper by the end of the 1st year. I decided to review my progress in the end of the 1st year – and to exit the field if I don’t feel enough progress (stop-loss). I didn’t meet all of the criteria that I’ve set upon myself, and didn’t exactly follow my stop-loss signal, instead I extended this self-probation period for 1 more year. I didn’t feel enough progress to satisfy my feel of accomplishment by this time either, and this is when I made a final decision to exit the field.
@@ -41,7 +41,7 @@ Here I’d like to thank my advisor Craig Group – thanks to him I had an oppor
 Tolstoy said (well, almost) that happy people are alike; unhappy ones feel satisfaction and dissatisfaction unevenly – they usually come in cycles. Once you face some troubles in work or life in general, your mood starts bouncing up and down in a wave-like fashion. Our low points – when we are dissatisfied the most – are usually the most calling times. One may feel the urge to cut ties, act harshly and swiftly. It’s almost never a good idea. Better idea would be to wait until the mood will climb back again (hours/days) and then make any actions about the situation.
 The flip side of this rule is the need to acknowledge problems even when the mood is in its high state.
 
-![high-low](/assets/img/sample/2020-12-26-exit-plans/high_low_point.png){: width="450" class="normal" .right}
+![high-low](/assets/img/sample/2020-12-26-exit-plans/high_low_point.png){: width="500" class="normal"}
 _high and low points_
 
 Let me bring an example from my experience. Once there was an upcoming project that my team was probably going to be involved in, and I knew little about it. There was some activity happening between the manager and some folks from my team, and my lack of involvement frustrated me. After a couple of weeks our manager had shed some light on the upcoming project, and I felt both satisfaction of knowing what was going on and yet a frustration because I felt left out for the past couple of weeks. That was a low point, so I decided to let my mood settle and to find the right verbiage before talking to the manager. The words I came up with are surprisingly simple: 'Thanks for announcing the news on the new project, I like the fact that it became more transparent now since I felt that I’m missing a part of that discussion'. They both express my concerns and reinforce the positive change.

@@ -7,9 +7,9 @@ tags: [academia, advice, experience]
 image: /assets/img/sample/2020-12-26-exit-plans/escher_transformation.jpg
 ---
 
-I talked to my friend the other day, he currently works in academia. We talked about his satisfaction with a job. He loves it but is overworking so much that I feel that he pays a toll – stressing out, feeling obliged to work on Christmas Eve etc. I mentioned to him that it would be a good idea to reflect on this situation and prepare an exit plan (not necessarily to execute it!).
+I talked to my friend the other day, he currently works in academia. We talked about his satisfaction with the job. He loves it but is overworking so much that I feel that he pays a toll – stressing out, feeling obliged to work on Christmas Eve etc. I mentioned to him that it would be a good idea to reflect on this situation and prepare an exit plan (not necessarily to execute it!).
 
-I'd like to write down what I mean by exit plan and lay out some advice on resolving difficulties in your life based on my past experience. I remember giving a similar advice to a colleague some time back and I believe it’s pretty universal and not only limited to academia or even to work domain in general.
+I'd like to write down what I mean by exit plan and lay out some advice on going through difficulties in your life based on my past experience. I remember giving a similar advice to a colleague some time back and I believe it’s pretty universal and not only limited to academia or even to work domain in general.
 
 The below applies to situations when you are upset with work, but some reflection on these points may be useful even when everything goes fine.
 
@@ -21,7 +21,7 @@ It can be anything ranging from your own behavior to toxic environment to lack o
 ## **Realize your limits and estimate your capacity to endure difficulties**
 Estimating your capacity to endure tribulations isn’t quite easy or precise since difficulties may have a compound effect and your ability to go through it is hardly a quantifiable value, but it’s still useful to project your current circumstances into some time in the future and imagine how you’d feel. This will give you an estimate on the time you can allocate to make changes.
 
-Remember that your capabilities are limited (despite what some motivational slogans may tell you). The psyche – like muscles – can only lift a certain weight and can crack when overloaded. In practical terms it means that continuous stress/overwork over some limit (individual for everyone) will lead to nervous breakdown, depression and even physical health problems. Recovering from these conditions is much harder than avoiding it. The myth about the almighty non-stop working people - Erdős, Musk etc -  is mostly a myth because it represents these people with a simplified one-dimensional snapshot. These people exist but in single digits and little is known about their happiness and mental state.
+Remember that your capabilities are limited (despite what some motivational slogans may tell you). The psyche – like muscles – can only lift a certain weight and can crack when overloaded. In practical terms it means that continuous stress/overwork over some limit (individual for everyone) will lead to nervous breakdown, depression and even physical health problems. Recovering from these conditions is much harder than avoiding it. The myth about the almighty non-stop working people - [Erdős](https://en.wikipedia.org/wiki/Paul_Erd%C5%91s), [Musk](https://en.wikipedia.org/wiki/Elon_Musk) etc -  is mostly a myth because it represents these people with a simplified one-dimensional snapshot. These people exist but in single digits and little is known about their happiness and mental state.
 
 ![limits](/assets/img/sample/2020-12-26-exit-plans/limitations.png){: width="550" }
 _personal limits and time slot to make changes_

@@ -23,6 +23,9 @@ Estimating your capacity to endure tribulations isn’t quite easy or precise si
 
 Remember that your capabilities are limited (despite what some motivational slogans may tell you). The psyche – like muscles – can only lift a certain weight and can crack when overloaded. In practical terms it means that continuous stress/overwork over some limit (individual for everyone) will lead to nervous breakdown, depression and even physical health problems. Recovering from these conditions is much harder than avoiding it. The myth about the almighty non-stop working people - Erdős, Musk etc -  is mostly a myth because it represents these people with a simplified one-dimensional snapshot. These people exist but in single digits and little is known about their happiness and mental state.
 
+![limits](/assets/img/sample/2020-12-26-exit-plans/limitations.png){: width="500" class="normal"}
+_personal limits and time slot to make changes_
+
 > To me the realization of my limits came around the time of my internship in 2010. The internship was in fact a 50hrs/week software engineering job with flexible hours, and I also tried to squeeze scientific research and software engineering courses there. I ended up working 12 hours/day most days, on top of it I had 2+ hour daily commute and then my day and night continued with running theoretical physics calculations. There was a lot I learned about my limits during this time. For example, I realized that screwing up my sleep schedule on Monday will screw up the rest of the week, that brain has limited focus power – focusing too much in one area will block your ability to focus elsewhere.
 
 ## **Define criteria of success and set a stop-loss signal**
@@ -50,6 +53,9 @@ _high and low points_
 Vent your frustration and seek for compassion, but do so judiciously. Remember that it is a double-edged sword.
 
 Support from friends and family is important, but be aware that releasing too much steam is locking you into a self-pity bubble. I saw examples of both extremes: people who keep all in themselves and suffering from not being understood and people who rant about their troubles and becoming dependent on other people’s support (the latter is quite common in academia). It is important to avoid both extremes and keep the balance.
+
+![limits](/assets/img/sample/2020-12-26-exit-plans/expressing_problem_pro_con.png){: width="500" class="normal"}
+_level of expressing problems and the danger of self-pity bubble_
 
 ## **Create actionable items**
 This one is straightforward: you need to think about concrete actions towards resolving the problematic situation. Plan to talk to your colleagues, your advisor, your manager, think about the best time to reach them and what to tell them, look for examples of how others overcame similar problems.

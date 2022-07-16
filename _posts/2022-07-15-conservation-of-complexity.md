@@ -4,7 +4,7 @@ author: Serdar Kurbanov
 date: 2022-07-15 17:00:00 -0500
 categories: [Blogging, Non-Technical]
 tags: [academia, advice, experience]
-image: /assets/img/sample/2022-07-15/escher-in-his-minds-eye.jpg
+image: /assets/img/sample/2022-07-15-conservation-of-complexity/escher-in-his-minds-eye.jpg
 ---
 
 Often when considering using a new framework or building a new system we think first and foremost about the simplification it will bring. Everyone secretly dreams of having a perfectly working software that will be easily configurable, easily extendable and will never crash.

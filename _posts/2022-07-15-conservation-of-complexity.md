@@ -27,4 +27,4 @@ The complexity that a given team of developers can maintain is about constant. T
 
 Say we introduced a new out of box metrics solution that removes the burden of supporting custom metrics. The reduced complexity can be filled with adding a long needed feature or building dashboards based on new metrics. But without a well-defined priorities and development that started ahead it's likely to be filled randomly. The burden of custom metrics can easily be replaced by a burden of supporting custom dashboards. This is why as an architect that brought the said out of box solution, one also needs to outline the limits of using it.
 
-That also says that as much as I'm inclined to build apps on a firm foundation of an underlying platform, some healthy amount of 'visionary' style development is necessary. It sets anchors/ideas that pull the team in the right direction when the complexity conservation law allows.
+That also says that as much as I'm inclined to build apps on a firm foundation, some healthy amount of 'visionary' style development is necessary. It sets anchors/ideas that pull the team in the right direction when the complexity conservation law allows.

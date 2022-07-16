@@ -15,7 +15,7 @@ It will be so much easier to build new endpoints with Springboot. It will be a b
 
 Some time after the new system is introduced we find ourselves supporting more infrastructure, building complicated configuration and opening the whole new dimension of complexity we didn't know existed.
 
-Does the life become easier with introducing new technology? No! The experience in the field tells that the complexity that can be supported by a given team stays about same - hence the conservation of complexity.
+Does life of a team become easier with introducing the new framework or out of box solution? No! The experience in the field tells that the complexity that can be supported by a given team stays about same - hence the conservation of complexity.
 
 The point of this post is to shift the focus: from thinking of burden removed by simplifications to thinking of what kind of complexity will fill the void created by taking another complexity out.
 
@@ -23,4 +23,8 @@ The point of this post is to shift the focus: from thinking of burden removed by
 
 Working on an algorithm doesn't involve a lot of human problems. But making the organization comprised of software engineers follow the same goal and build coherent solutions to commonly understood problems is mainly about human interactions and less about technology.
 
-I mentioned that the complexity that a given team of developers can maintain is about constant. The tricky part is that simply removing the complexity from a team can result in people of that team filling the void with random additional complexity. Say we introduced a new out of box logging solution that removes the burden of supporting custom logging. 
+The complexity that a given team of developers can maintain is about constant. The tricky part is that simply removing the complexity from a team doesn't leave it in the simplified state for long. The complexity void will be filled by people of that team - and it can be filled in random direction. This is why it's important to define the direction for the future development and maybe start building in this direction before the current burden is taken away.
+
+Say we introduced a new out of box metrics solution that removes the burden of supporting custom metrics. The reduced complexity can be filled with adding a long needed feature or building dashboards based on new metrics. But without a well-defined priorities and development that started ahead it's likely to be filled randomly. The burden of custom metrics can easily be replaced by a burden of supporting custom dashboards. This is why as an architect that brought the said out of box solution, one also needs to outline the limits of using it.
+
+That also says that as much as I'm inclined to build apps on a firm foundation of an underlying platform, some healthy amount of 'visionary' style development is necessary. It sets anchors/ideas that pull the team in the right direction when the complexity conservation law allows.

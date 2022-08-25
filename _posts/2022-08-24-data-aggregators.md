@@ -1,11 +1,13 @@
 ---
-title: Data aggregation: types and pitfalls
+title: Data aggregation - types and pitfalls
 author: Serdar Kurbanov
 date: 2022-08-24 17:00:00 -0500
 categories: [Blogging, Technical]
 tags: [data, aggregation]
-image: /assets/img/sample/2022-08-24-data-aggregators/smth.jpg
+image: /assets/img/sample/2022-08-24-data-aggregators/escher-distorted.jpg
 ---
+
+(Image: [link](https://www.sothebys.com/en/buy/auction/2019/prints-multiples-day-sale/m-c-escher-print-gallery-bklw-410))
 
 ## Data aggregators
 
@@ -28,6 +30,8 @@ There are a few types of aggregation that I know:
 (add note about not using app-facing backend as data aggregator for other apps)
 
 # No aggregation
+
+![no data aggregation and no lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-init.png){: width="650" class="normal"}
 
 # Aggregation with references
 

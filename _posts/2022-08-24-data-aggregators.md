@@ -58,6 +58,10 @@ Organizational challenge is hard to quantify: how much firmness do you add into 
 Being a lead (architect, manager, director) requires hearing the feedback, placing the limits of pursuing certain goals and allowing certain level of chaos in your organization. Controlling this chaos and allowing different levels of it in different situations is essentially the art of leadership.
 
 Another related piece of knowledge: the architectural choices that are based on conventions - like for instance a convention of what aggregation strategy to choose - will eventually dissolve (as I mentioned they need to be reinforced by few levels of leadership). Few things will make them more solid:
-* frameworks - build a platform instead of a specific service
-* wide adoption - keep aggregation layers close to where they are used
-* automation - make it easier to solve common problems: where to find data, how to keep contracts updated, whom to contact in case of failures etc
+* platform approach
+  - add value on top of just aggregating data: where to find data, how to keep contracts updated, whom to contact in case of failures,
+  - provide information about system as a whole: corelated failures, execution plan for aggregation routes, info on cross-datacenter connections for aggregation routes
+  - provide services and automation that would otherwise be client requirements: notification of failures, performance tests etc
+* wide adoption
+  - keep aggregation layers close to where they are used and know your use cases
+  - keep contact with people - even though the aggregator is the technical solution, it will be people who will decide whether to use it or now

@@ -1,5 +1,5 @@
 ---
-title: Data aggregation - types and pitfalls
+title: Types and pitfalls of data aggregation
 author: Serdar Kurbanov
 date: 2022-08-24 17:00:00 -0500
 categories: [Blogging, Technical]
@@ -11,7 +11,7 @@ image: /assets/img/sample/2022-08-24-data-aggregators/escher-distorted.jpg
 
 # Data aggregators
 
-Every now and then the big organization comes with the need of simplifying data fetch from multiple systems - hence building the data aggregator. Aggregation is such an attractive idea that sometimes it comes without a need - just because we, humans, love it. If we lived in the machine-dominated world, we'd probably not need any aggregation at all, or it would be built much differently. Here I'd like to describe few approaches to data aggregation and the elements of human nature that affect their designs.
+Every now and then the big organization comes with the need of unifying data fetch from multiple systems - hence building the data aggregator. Aggregation is such an attractive idea that sometimes it comes without a need - just because we, humans, love it. If we lived in the machine-dominated world, we'd probably not need any aggregation at all, or it would be built much differently. Here I'd like to describe few approaches to data aggregation and the elements of human nature that affect their designs.
 
 This essay mostly applies to big organizations comprised of multiple subsystems - because I mostly dealt with this type of organizations. However, it will apply to smaller systems, difference will be that bigger systems would smoother out exceptions (for instance, a strong influence of individuals) while smaller will not.
 
@@ -45,7 +45,11 @@ In fact, all the other types of aggregation also gravitate to the lump model - a
 
 ## Aggregation with routing
 
+![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="650" class="normal"}
+
 ## Aggregation with cache
+
+![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="650" class="normal"}
 
 # Summary
 
@@ -60,7 +64,11 @@ Some developers may think that the main motivation to build orchestration layer 
 
 All this comes at a price: orchestration layer is hard to build and maintain.
 
-## Organizational challenges
+## When to not build a data aggregator
+
+BFF
+
+## Human nature and organizational challenges
 Taking away technical details of implementing the aggregation service, the human nature adds 2 strong centers of gravity that will drive the design of components of a system:
 * using the data
 * storing the data
@@ -71,7 +79,7 @@ Organizational challenge is hard to quantify: how much firmness do you add into 
 
 Being a lead (architect, manager, director) requires hearing the feedback, placing the limits of pursuing certain goals and allowing certain level of chaos in your organization. Controlling this chaos and allowing different levels of it in different situations is essentially the art of leadership.
 
-Another related thought: the architectural choices that are based on conventions - like for instance a convention of what aggregation strategy to choose - will eventually dissolve (as I mentioned they need to be reinforced by few levels of leadership). Few things will make them more solid:
+Another related thought: the architectural choices that are based on conventions - like for instance a convention of what aggregation strategy to choose - will eventually dissolve. As I mentioned, they need to be reinforced by few levels of leadership to stay longer. Few things will make them more solid:
 * platform approach
   - add value on top of just aggregating data: where to find data, how to keep contracts updated, whom to contact in case of failures
   - provide information about system as a whole: corelated failures, execution plan for aggregation routes, info on cross-datacenter connections for aggregation routes

@@ -25,6 +25,7 @@ First, the problem statement: imagine that your company has a number of systems 
 
 There are a few types of aggregation that I know:
 * **lump model** - stable state
+* no aggregation
 * aggregation through references
 * aggregation through routing
 * aggregation through cache
@@ -36,14 +37,43 @@ There are a few types of aggregation that I know:
 The company may decide to not build data aggregators, and in theory the app interaction will look like this: each client application connects to respective data source and fetches the needed data. The responsibility of keeping the contract is on each app separately.
 ![no data aggregation and no lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-init.png){: width="650" class="normal"}
 
-This picture however doesn't depict the ground (most stable) state of the system. In fact, the organization will require efforts to keep it like this. The true stable state will evolve from this system naturally: some teams will decide to build a cache, others will introduce a small orchestration service that will be reused by other apps thinking that this the real source of truth. Some decisions like this will be temporary, some will cement over time. In time the system will evolve into the **lump model**:
+This model however doesn't depict the ground (most stable) state of the system. In fact, the organization will require efforts to keep it like this. The true stable state will evolve from this system naturally: some teams will decide to build a cache, others will introduce a small orchestration service that will be reused by other apps thinking that this the real source of truth. Some decisions like this will be temporary, some will cement over time. In time the system will evolve into the **lump model**:
 ![no data aggregation and lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-lump.png){: width="650" class="normal"}
 
 In fact, all the other types of aggregation also gravitate to the lump model - as entropy of the system grows and the structure of the system erodes.
 
+### Pros and cons
+Pros:
+* limiting the blast radius: some orchestrators that are created ad-hoc may fail, but it likely won't cause the big crash.
+* all the orchestration models erode into the lump model - so it doesn't require an architectural oversight
+Cons:
+* getting the map of ad-hoc aggregators is difficult
+* the lack of map makes getting the true information in the system problematic - you may get a cached data (may be outdated)
+* the lack of map makes issue resolution harder
+* the lack of map will make it hard to keep the right sources in mind - it will likely lead to creating more ad-hoc aggregators (to rule them all)
+
+## No aggregation
+
+Getting back to the idea of keeping the system without aggregators. Since this is not a ground state, keeping it will need an architectural oversight. This will include supporting applications, so that they know the right sources of data, and blocking the emergence of ad-hoc aggregators.
+
+### Pros and cons
+
+### Model erosion
+How does this model erode into the lump model?
+* teams are building a cache on client side that is then used by the other teams
+* teams are building ad-hoc orchestration service used by other teams
+
 ## Aggregation with references
 
+This model is a development on top of the no-aggregation model. No-aggregation model requires someone to make a book-keeping of all sources and making sure that no aggregation happens unintentionally. It can be facilitated by keeping the source metadata (contracts, data type registry) in some system, so it can be fetched dynamically by sources.
+
+Fetching the data is now a 2-step process: get the connection details to the source from orchestrator, then connect to source from client side.
 ![aggregation with references](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-references.png){: width="650" class="normal"}
+
+### Model erosion
+How does this model erode into the lump model?
+* if the orchestration service doesn't provide the references to all necessary sources, teams are going to build its own orchestrator
+*
 
 ## Aggregation with routing
 

@@ -11,6 +11,8 @@ image: /assets/img/sample/2022-08-24-data-aggregators/escher-distorted.jpg
 
 # Data aggregators
 
+(I will use aggregation and orchestration interchangeable even though the they will normally mean different approaches - what I called aggregation with cache and aggregation with routing)
+
 Every now and then the big organization comes with the need of unifying data fetch from multiple systems - hence building the data aggregator. Aggregation is such an attractive idea that sometimes it comes without a need - just because we, humans, love it. If we lived in the machine-dominated world, we'd probably not need any aggregation at all, or it would be built much differently. Here I'd like to describe few approaches to data aggregation and the elements of human nature that affect their designs.
 
 This essay mostly applies to big organizations comprised of multiple subsystems - because I mostly dealt with this type of organizations. However, it will apply to smaller systems, difference will be that bigger systems would smoother out exceptions (for instance, a strong influence of individuals) while smaller will not.
@@ -49,24 +51,26 @@ In fact, all the other types of aggregation also gravitate to the lump model - a
 
 ## Aggregation with cache
 
-![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="650" class="normal"}
+![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="650" class="normal"}
 
 # Summary
 
 ## Motivation of building the aggregator
 
-Some developers may think that the main motivation to build orchestration layer is to make it 'easier' for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer will takes more effort than connecting to individual sources (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
+Some developers may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer *will takes more effort than connecting to individual sources* (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
 * unified model of data in the organization
 * unified registry of data sources
 * unified implementation of connections to sources
 * single point of tracking the changing contracts
 * etc
 
-All this comes at a price: orchestration layer is hard to build and maintain.
+All this comes at a price: orchestration layer is hard to build and maintain. Side note: in fact, almost all development that starts with the motivation to make something easier is a misdirection in my experience.
 
 ## When to not build a data aggregator
 
 BFF
+
+![aggregation with bff](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-bff.png){: width="650" class="normal"}
 
 ## Human nature and organizational challenges
 Taking away technical details of implementing the aggregation service, the human nature adds 2 strong centers of gravity that will drive the design of components of a system:

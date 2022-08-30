@@ -57,11 +57,12 @@ Cons:
 Getting back to the idea of keeping the system without aggregators. Since this is not a ground state, keeping it will need an architectural oversight. This will include supporting applications, so that they know the right sources of data, and blocking the emergence of ad-hoc aggregators.
 
 ### Pros and cons
-
-### Model erosion
-How does this model erode into the lump model?
-* teams are building a cache on client side that is then used by the other teams
-* teams are building ad-hoc orchestration service used by other teams
+Pros:
+* the model doesn't need a separate runtime for aggregation service, so no resources that are spent on it
+Cons:
+* the model needs some form of book-keeping to know the sources. It can be done via comprehensive documentation or through some dedicated group of people to keep this knowledge.
+* connections are done by each application separately, so it needs replication of effort to build it and potentially replication of errors.
+* the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer.
 
 ## Aggregation with references
 
@@ -70,17 +71,20 @@ This model is a development on top of the no-aggregation model. No-aggregation m
 Fetching the data is now a 2-step process: get the connection details to the source from orchestrator, then connect to source from client side.
 ![aggregation with references](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-references.png){: width="650" class="normal"}
 
-### Model erosion
-How does this model erode into the lump model?
-* if the orchestration service doesn't provide the references to all necessary sources, teams are going to build its own orchestrator
-*
+### Pros and cons
+Pros:
+* a
+Cons:
+* b
 
 ## Aggregation with routing
+
 
 ![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="650" class="normal"}
 
 ## Aggregation with cache
 
+In this model
 ![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="650" class="normal"}
 
 # Summary
@@ -90,7 +94,7 @@ How does this model erode into the lump model?
 Some developers may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer **will takes more effort than connecting to individual sources** (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
 * unified model of data in the organization
 * unified registry of data sources
-* unified implementation of connections to sources
+* unified implementation of connections to sources + resiliency of this connection
 * single point of tracking the changing contracts
 * etc
 
@@ -117,7 +121,7 @@ Another related thought: the architectural choices that are based on conventions
 * platform approach
   - add value on top of just aggregating data: where to find data, how to keep contracts updated, whom to contact in case of failures
   - provide information about system as a whole: corelated failures, execution plan for aggregation routes, info on cross-datacenter connections for aggregation routes
-  - provide services and automation that would otherwise be client requirements: notification of failures, performance tests etc
+  - provide services and automation that would otherwise be client requirements: notification of failures, performance tests, resiliency measures (rate limiting, retries, bulkheads)
 * wide adoption
-  - keep aggregation layers close to where they are used and know your use cases
-  - keep contact with people - even though the aggregator is the technical solution, it will be people who will decide whether to use it or now
+  - know your use cases and keep aggregation layers close to where they are used
+  - keep contact with people - even though the aggregator is the technical solution, it will be people who will decide whether to use it or not

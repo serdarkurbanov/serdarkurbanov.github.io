@@ -61,7 +61,7 @@ Pros:
 * the model doesn't need a separate runtime for aggregation service, so no resources that are spent on it
 Cons:
 * the model needs some form of book-keeping to know the sources. It can be done via comprehensive documentation or through some dedicated group of people to keep this knowledge.
-* connections are done by each application separately, so it needs replication of effort to build it and potentially replication of errors.
+* connections are done by each application separately, so it needs replication of effort to build it and potentially replication of errors. Changes in contracts also need to be tracked by each application separately.
 * the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer.
 
 ## Aggregation with references

@@ -92,6 +92,7 @@ Cons:
 In this model the data from multiple sources is collected into the centralized cache. Clients receive data from the cache instead of actual sources. Architecturally this model is prone to mismatches between the cache and the source, but organizationally it's surprisingly stable! This aggregation type will likely have better chances to get additional resources/funding/organizational support than other types of aggregation. The reason behind it is the presence of data that adds weight to this type of aggregators. When some team will look for data, the aggregator will be the final stop.
 
 ![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="600" class="normal"}
+_note the reversed arrows between aggregator and sources_
 
 Pros:
 * organizational stability due to the presence of data storage

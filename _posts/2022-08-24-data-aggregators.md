@@ -132,15 +132,16 @@ Taking away technical details of implementing the aggregation service, the human
 
 The evolution of system design then tends to keep the systems that face the final users (using the data) and systems that store the data. The intermediate layers tend to be very fluid. They can easily lack support and resources unless they're artificially reinforced by few levels of leadership. Keeping these layers stable isn't only a technical but also an organizational challenge.
 
-Organizational challenge is hard to quantify: how much firmness do you add into your org so that it maintains the organizational structure and also that it doesn't become a dictatorship? Turning it into dictatorship can block the creativity of the teams, and keeping it loose can make the system architecture so unstable that it will drain resources to just keep it running.
+Organizational challenge is hard to quantify: how much firmness do you add into your org so that it maintains the organizational structure and also that it doesn't become a dictatorship? Making it too firm can block the creativity of the teams, and keeping it loose can make the system architecture so unstable that it will drain resources to keep it running.
 
 Being a lead (architect, manager, director) requires hearing the feedback, placing the limits of pursuing certain goals and allowing certain level of chaos in your organization. Controlling this chaos and allowing different levels of it in different situations is essentially the art of leadership (it's a good topic for another post).
 
 Another related thought: the architectural choices that are based on conventions - like for instance a convention of what aggregation strategy to choose - will eventually dissolve. As I mentioned, they need to be reinforced by few levels of leadership to stay longer. Few things will make them more solid:
+* documenting the conventions
+* wide adoption
+  - know your use cases and keep aggregation layers close to where they are used
+  - keep contact with people - even though the aggregator is the technical solution, it will be people who will decide whether to use it or not
 * platform approach
   - add value on top of just aggregating data: where to find data, how to keep contracts updated, whom to contact in case of failures
   - provide information about system as a whole: corelated failures, execution plan for aggregation routes, info on cross-datacenter connections for aggregation routes
   - provide services and automation that would otherwise be client requirements: notification of failures, performance tests, resiliency measures (rate limiting, retries, bulkheads)
-* wide adoption
-  - know your use cases and keep aggregation layers close to where they are used
-  - keep contact with people - even though the aggregator is the technical solution, it will be people who will decide whether to use it or not

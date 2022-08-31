@@ -9,7 +9,7 @@ image: /assets/img/sample/2022-08-24-data-aggregators/escher-distorted.jpg
 
 (Image: [link](https://www.sothebys.com/en/buy/auction/2019/prints-multiples-day-sale/m-c-escher-print-gallery-bklw-410))
 
-# Data aggregators
+# **Data aggregators**
 
 (I will use aggregation and orchestration interchangeable even though the they will normally mean different approaches - what I called aggregation with cache and aggregation with routing)
 
@@ -19,7 +19,7 @@ This essay mostly applies to big organizations comprised of multiple subsystems 
 
 Also, in this essay I deliberately don't specify the technology selected for data aggregation: data can be stored in various DBs, served through GraphQL or REST or gRPC. I'd like to concentrate on architectural/organizational challenges that comes with aggregation rather than details of the chosen technology.
 
-# Types of data aggregation
+# **Types of data aggregation**
 
 First, the problem statement: imagine that your company has a number of systems that hold some specific data. You would like to build a way to fetch data from client applications (internal or external).
 
@@ -32,7 +32,7 @@ There are a few types of aggregation that I know:
 
 (add note about not using app-facing backend as data aggregator for other apps)
 
-## Lump model
+## **Lump model**
 
 The company may decide to not build data aggregators, and in theory the app interaction will look like this: each client application connects to respective data source and fetches the needed data. The responsibility of keeping the contract is on each app separately.
 
@@ -55,7 +55,7 @@ Cons:
 * the lack of map makes issue resolution harder
 * the lack of map will make it hard to keep the right sources in mind - it will likely lead to creating more ad-hoc aggregators
 
-## No aggregation
+## **No aggregation**
 
 Getting back to the idea of keeping the system without aggregators. Since this is not a ground state, keeping it will need an architectural oversight. This will include supporting applications, so that they know the right sources of data, and blocking the emergence of ad-hoc aggregators.
 
@@ -67,7 +67,7 @@ Cons:
 * connections are done by each application separately, so it needs replication of effort to build it and potentially replication of errors. Changes in contracts also need to be tracked by each application separately.
 * the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer. It's organizationally unstable.
 
-## Aggregation with references
+## **Aggregation with references**
 
 This model is a development on top of the no-aggregation model. No-aggregation model requires someone to make a book-keeping of all sources and making sure that no aggregation happens unintentionally. It can be facilitated by keeping the source metadata (contracts, data type registry) in some system, so it can be fetched dynamically by sources.
 
@@ -82,12 +82,12 @@ Pros:
 Cons:
 * b
 
-## Aggregation with routing
+## **Aggregation with routing**
 
 
 ![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="600" class="normal"}
 
-## Aggregation with cache
+## **Aggregation with cache**
 
 In this model the data from multiple sources is collected into the centralized cache. Clients receive data from the cache instead of actual sources. Architecturally this model is prone to mismatches between the cache and the source, but organizationally it's surprisingly stable! This aggregation type will likely have better chances to get additional resources/funding/organizational support than other types of aggregation. The reason behind it is the presence of data that adds weight to this type of aggregators. When some team will look for data, the aggregator will be the final stop.
 
@@ -106,9 +106,9 @@ Cons:
 * increased infrastructure costs due to added storage at aggregator side
 * higher dependency of aggregator on client read patterns than other types of aggregation: the storage needs to be efficient for client needs
 
-# Summary
+# **Summary**
 
-## Motivation of building the aggregator
+## **Motivation of building the aggregator**
 
 Some may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer **will takes more effort than connecting to individual sources** (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
 * unified model of data in the organization
@@ -119,13 +119,13 @@ Some may think that the main motivation to build orchestration layer is to make 
 
 All this comes at a price: orchestration layer is hard to build and maintain. Side note: in fact, almost all development that starts with the motivation to make something easier is a misdirection in my experience.
 
-## When to not build a data aggregator
+## **When to not build a data aggregator**
 
 BFF
 
 ![aggregation with bff](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-bff.png){: width="600" class="normal"}
 
-## Human nature and organizational challenges
+## **Human nature and organizational challenges**
 Taking away technical details of implementing the aggregation service, the human nature adds 2 strong centers of gravity that will drive the design of components of a system:
 * using the data
 * storing the data
@@ -140,8 +140,8 @@ Another related thought: the architectural choices that are based on conventions
 * documenting the conventions
 * wide adoption
   - know your use cases and keep aggregation layers close to where they are used
-  - keep contact with people - even though the aggregator is the technical solution, it will be people who will decide whether to use it or not
+  - keep contact with people (clients and sources) - even though the aggregator is the technical solution, it will be people who will decide whether to use it or not
 * platform approach
   - add value on top of just aggregating data: where to find data, how to keep contracts updated, whom to contact in case of failures
-  - provide information about system as a whole: corelated failures, execution plan for aggregation routes, info on cross-datacenter connections for aggregation routes
+  - provide information about system as a whole: corelated failures, execution plan for aggregation routes, info on cross-datacenter connections for aggregation routes etc
   - provide services and automation that would otherwise be client requirements: notification of failures, performance tests, resiliency measures (rate limiting, retries, bulkheads)

@@ -35,10 +35,12 @@ There are a few types of aggregation that I know:
 ## Lump model
 
 The company may decide to not build data aggregators, and in theory the app interaction will look like this: each client application connects to respective data source and fetches the needed data. The responsibility of keeping the contract is on each app separately.
-![no data aggregation and no lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-init.png){: width="650" class="normal"}
+
+![no data aggregation and no lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-init.png){: width="600" class="normal"}
 
 This model however doesn't depict the ground (most stable) state of the system. In fact, the organization will require efforts to keep it like this. The true stable state will evolve from this system naturally: some teams will decide to build a cache, others will introduce a small orchestration service that will be reused by other apps thinking that this the real source of truth. Some decisions like this will be temporary, some will cement over time. In time the system will evolve into the **lump model**:
-![no data aggregation and lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-lump.png){: width="650" class="normal"}
+
+![no data aggregation and lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-lump.png){: width="600" class="normal"}
 
 In fact, all the other types of aggregation also gravitate to the lump model - as entropy of the system grows and the structure of the system erodes.
 
@@ -46,11 +48,12 @@ In fact, all the other types of aggregation also gravitate to the lump model - a
 Pros:
 * limiting the blast radius: some orchestrators that are created ad-hoc may fail, but it likely won't cause the big crash.
 * all the orchestration models erode into the lump model - so it doesn't require an architectural oversight
+
 Cons:
-* getting the map of ad-hoc aggregators is difficult
+* getting the map of ad-hoc aggregators is difficult because it's convoluted and changes over time
 * the lack of map makes getting the true information in the system problematic - you may get a cached data (may be outdated)
 * the lack of map makes issue resolution harder
-* the lack of map will make it hard to keep the right sources in mind - it will likely lead to creating more ad-hoc aggregators (to rule them all)
+* the lack of map will make it hard to keep the right sources in mind - it will likely lead to creating more ad-hoc aggregators
 
 ## No aggregation
 
@@ -62,36 +65,51 @@ Pros:
 Cons:
 * the model needs some form of book-keeping to know the sources. It can be done via comprehensive documentation or through some dedicated group of people to keep this knowledge.
 * connections are done by each application separately, so it needs replication of effort to build it and potentially replication of errors. Changes in contracts also need to be tracked by each application separately.
-* the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer.
+* the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer. It's organizationally unstable.
 
 ## Aggregation with references
 
 This model is a development on top of the no-aggregation model. No-aggregation model requires someone to make a book-keeping of all sources and making sure that no aggregation happens unintentionally. It can be facilitated by keeping the source metadata (contracts, data type registry) in some system, so it can be fetched dynamically by sources.
 
 Fetching the data is now a 2-step process: get the connection details to the source from orchestrator, then connect to source from client side.
-![aggregation with references](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-references.png){: width="650" class="normal"}
+
+![aggregation with references](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-references.png){: width="600" class="normal"}
 
 ### Pros and cons
 Pros:
 * a
+
 Cons:
 * b
 
 ## Aggregation with routing
 
 
-![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="650" class="normal"}
+![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="600" class="normal"}
 
 ## Aggregation with cache
 
-In this model
-![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="650" class="normal"}
+In this model the data from multiple sources is collected into the centralized cache. Clients receive data from the cache instead of actual sources. Architecturally this model is prone to mismatches between the cache and the source, but organizationally it's surprisingly stable! This aggregation type will likely have better chances to get additional resources/funding/organizational support than other types of aggregation. The reason behind it is the presence of data that adds weight to this type of aggregators. When some team will look for data, the aggregator will be the final stop.
+
+![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="600" class="normal"}
+
+Pros:
+* organizational stability due to the presence of data storage
+* lower dependency of sources on client read patterns since data is now served from cache
+
+Cons:
+* potential data mismatches with sources
+* increased technical complexity
+  - complexity of storing data is added on top of connections to sources
+  - complexity of keeping data up to date with sources
+* increased infrastructure costs due to added storage at aggregator side
+* higher dependency of aggregator on client read patterns than other types of aggregation: the storage needs to be efficient for client needs
 
 # Summary
 
 ## Motivation of building the aggregator
 
-Some developers may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer **will takes more effort than connecting to individual sources** (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
+Some may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer **will takes more effort than connecting to individual sources** (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
 * unified model of data in the organization
 * unified registry of data sources
 * unified implementation of connections to sources + resiliency of this connection
@@ -104,7 +122,7 @@ All this comes at a price: orchestration layer is hard to build and maintain. Si
 
 BFF
 
-![aggregation with bff](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-bff.png){: width="650" class="normal"}
+![aggregation with bff](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-bff.png){: width="600" class="normal"}
 
 ## Human nature and organizational challenges
 Taking away technical details of implementing the aggregation service, the human nature adds 2 strong centers of gravity that will drive the design of components of a system:

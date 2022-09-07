@@ -74,13 +74,9 @@ In this model the aggregator is routing the client's request to respective sourc
 
 ![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="600" class="normal"}
 
-### Pros and conservation
-Pros:
+The convention now is that client applications will use this aggregator instead of connecting to sources on their own. Another convention is that there will be no other aggregator in the system that would connect to same sources. Not following these conventions will reduce the value of the aggregator.
 
-Cons:
-
-### Responsibilities
-The responsibility of the aggregator is to make a bookkeeping of source metadata (data dictionary), provide the visibility into routing details (underlying sources, execution plan, latencies, datacenter hops).
+Since the aggregator service now connects to sources on its own, it will need to take some responsibilities that client applications would have otherwise. It will include bookkeeping of source metadata, providing the visibility into routing details (route execution plan, latencies, datacenter hops etc), providing metrics for routes.
 
 ## **Aggregation with cache**
 
@@ -91,17 +87,9 @@ Architecturally this model is prone to mismatches between the cache and the sour
 ![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="600" class="normal"}
 _note the reversed arrows between aggregator and sources_
 
-Pros:
-* organizational stability due to the presence of data storage
-* lower dependency of sources on client read patterns since data is now served from cache
+This model lowers the dependency of sources on client read patterns since data is now served from cache. At the same time the dependency of an aggregator on client read patterns is higher: the storage needs to be efficient for client needs. It increases technical complexity of the aggregator: complexity of storing data, complexity of keeping data up to date with sources.
 
-Cons:
-* potential data mismatches with sources
-* increased technical complexity
-  - complexity of storing data is added on top of connections to sources
-  - complexity of keeping data up to date with sources
-* increased infrastructure costs due to added storage at aggregator side
-* higher dependency of aggregator on client read patterns than other types of aggregation: the storage needs to be efficient for client needs
+Apart from complexity, this model also adds the infrastructure costs due to added storage at the aggregator side.
 
 # **Summary**
 
@@ -129,11 +117,11 @@ Taking away technical details of implementing the aggregation service, the human
 
 The evolution of system design then tends to keep the systems that face the final users (using the data) and systems that store the data. The intermediate layers tend to be very fluid. They can easily lack support and resources unless they're artificially reinforced by few levels of leadership. Keeping these layers stable isn't only a technical but also an organizational challenge.
 
-Organizational challenge is hard to quantify: how much firmness do you add into your org so that it maintains the organizational structure and also that it doesn't become a dictatorship? Making it too firm can block the creativity of the teams, and keeping it loose can make the system architecture so unstable that it will drain resources to keep it running.
+> Organizational challenge is hard to quantify: how much firmness do you add into your org so that it maintains the organizational structure and also that it doesn't become a dictatorship? Making it too firm can block the creativity of the teams, and keeping it loose can make the system architecture so unstable that it will drain resources to keep it running.
 
-Being a lead (architect, manager, director) requires hearing the feedback, placing the limits of pursuing certain goals and allowing certain level of chaos in your organization. Controlling this chaos and allowing different levels of it in different situations is essentially the art of leadership (it's a good topic for another post).
+> Being a lead (architect, manager, director) requires hearing the feedback, placing the limits of pursuing certain goals and allowing certain level of chaos in your organization. Controlling this chaos and allowing different levels of it in different situations is essentially the art of leadership (it's a good topic for another post).
 
-Another related thought: the architectural choices that are based on conventions - like for instance a convention of what aggregation strategy to choose - will eventually dissolve. As I mentioned, they need to be reinforced by few levels of leadership to stay longer. Few things will make them more solid:
+Another related thought: the architectural choices that are based on conventions - like for instance a convention of what aggregation strategy to choose - will eventually erode. As I mentioned, they need to be reinforced by few levels of leadership to stay longer. Few things will make them more solid:
 * documenting the conventions
 * wide adoption
   - know your use cases and keep aggregation layers close to where they are used

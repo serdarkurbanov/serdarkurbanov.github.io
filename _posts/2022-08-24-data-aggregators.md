@@ -95,7 +95,7 @@ Apart from complexity, this model also adds the infrastructure costs due to adde
 
 ## **Motivation of building the aggregator**
 
-Some may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer **will takes more effort than connecting to individual sources** (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
+Some may think that the main motivation to build orchestration layer is to make it *'easier'* for applications to fetch data from a variety of sources. In fact, this motivation is a misdirection: building an orchestration layer **will take more effort for an organization than connecting to individual sources** (also, check out this [note on complexity](https://serdarkurbanov.github.io/posts/conservation-of-complexity/)). The real motivation should be:
 * unified model of data in the organization
 * unified registry of data sources
 * unified implementation of connections to sources + resiliency of this connection
@@ -106,9 +106,13 @@ All this comes at a price: orchestration layer is hard to build and maintain. Si
 
 ## **When to not build a data aggregator**
 
-BFF
+Given all the responsibilities that an aggregator needs to have, there are cases when it's better to not have it. One example is the idea of turning the Backend For Frontend (BFF) service into an aggregator used by other services.
 
 ![aggregation with bff](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-bff.png){: width="600" class="normal"}
+
+The BFF pattern is very useful. In fact, I'm yet to see a user-facing application where building the backend specifically dedicated to the UI won't be beneficial. It provides a variety of benefits: standardized responses, ability to rearrange calls on backend without touching frontend, adding app-specific security logic etc.
+
+Imagine now that the frontend is displaying the information collected by its BFF from multiple sources. Another user-facing application wants to display similar information and requests some of the BFF's APIs to be reused. This should be avoided: the BFF APIs are optimized for the specific app (some calls can be merged/split for performance, service may not handle the combined load etc.). Using same endpoints from another user-facing application will block the original application to optimize them further.
 
 ## **Human nature and organizational challenges**
 Taking away technical details of implementing the aggregation service, the human nature adds 2 strong centers of gravity that will drive the design of components of a system:

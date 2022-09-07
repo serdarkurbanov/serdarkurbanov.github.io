@@ -34,62 +34,59 @@ There are a few types of aggregation that I know:
 
 ## **Lump model**
 
-The company may decide to not build data aggregators, and in theory the app interaction will look like this: each client application connects to respective data source and fetches the needed data. The responsibility of keeping the contract is on each app separately.
+The company may decide to not build data aggregators, and in theory the app interaction will look like this: each client application connects to respective data source and fetches the needed data. The responsibility of keeping the contract is on each client application separately.
 
 ![no data aggregation and no lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-init.png){: width="600" class="normal"}
 
-This model however doesn't depict the ground (most stable) state of the system. In fact, the organization will require efforts to keep it like this. The true stable state will evolve from this system naturally: some teams will decide to build a cache, others will introduce a small orchestration service that will be reused by other apps thinking that this the real source of truth. Some decisions like this will be temporary, some will cement over time. In time the system will evolve into the **lump model**:
+This model however doesn't depict the ground (most stable) state of the system. In fact, the organization will require efforts to keep it like this. The true stable state will evolve from this system naturally: some teams will decide to build a cache, others will introduce a small orchestration service that will be reused by other apps thinking that this the real source of truth. Many decisions like this will be temporary, some will cement over time. In time the system will evolve into the **lump model**:
 
 ![no data aggregation and lumps](/assets/img/sample/2022-08-24-data-aggregators/no-aggregation-lump.png){: width="600" class="normal"}
 
 In fact, all the other types of aggregation also gravitate to the lump model - as entropy of the system grows and the structure of the system erodes.
 
-### Pros and cons
-Pros:
-* limiting the blast radius: some orchestrators that are created ad-hoc may fail, but it likely won't cause the big crash.
-* all the orchestration models erode into the lump model - so it doesn't require an architectural oversight
+The lump model has its pros and cons. One of the good things about it is limiting the blast radius: some orchestrators that are created ad-hoc may fail, but it likely won't crash the whole system. Another benefit is being the stable state - thus minimizing the need for architectural efforts.
 
-Cons:
-* getting the map of ad-hoc aggregators is difficult because it's convoluted and changes over time
-* the lack of map makes getting the true information in the system problematic - you may get a cached data (may be outdated)
-* the lack of map makes issue resolution harder
-* the lack of map will make it hard to keep the right sources in mind - it will likely lead to creating more ad-hoc aggregators
+That said, it's chaotic nature makes it difficult to create a map of sources. This in turn complicates resolving issues and getting the true information (you may get a cached data that may be outdated).
 
 ## **No aggregation**
 
 Getting back to the idea of keeping the system without aggregators. Since this is not a ground state, keeping it will need an architectural oversight. This will include supporting applications, so that they know the right sources of data, and blocking the emergence of ad-hoc aggregators.
 
-### Pros and cons
-Pros:
-* the model doesn't need a separate runtime for aggregation service, so no resources that are spent on it
-Cons:
-* the model needs some form of book-keeping to know the sources. It can be done via comprehensive documentation or through some dedicated group of people to keep this knowledge.
-* connections are done by each application separately, so it needs replication of effort to build it and potentially replication of errors. Changes in contracts also need to be tracked by each application separately.
-* the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer. It's organizationally unstable.
+With this model you won't need a separate runtime for aggregation service, so no resources will be spent on it. It will require each client applications to connect to sources separately - thus replication of effort and potentially replication of errors. Changes in contracts also need to be tracked by each application separately.
+
+This model also needs some form of book-keeping to know the sources. It can be done via comprehensive documentation or through some dedicated group of people to keep this knowledge.
+
+The biggest problem is that the model's integrity relies completely on conventions - agreement between architects/leadership and the teams to not build a common aggregation layer. It's organizationally unstable.
 
 ## **Aggregation with references**
 
-This model is a development on top of the no-aggregation model. No-aggregation model requires someone to make a book-keeping of all sources and making sure that no aggregation happens unintentionally. It can be facilitated by keeping the source metadata (contracts, data type registry) in some system, so it can be fetched dynamically by sources.
-
-Fetching the data is now a 2-step process: get the connection details to the source from orchestrator, then connect to source from client side.
+The no-aggregation model can theoretically be enhanced by automating the book-keeping of source metadata, so it can be fetched dynamically by clients. Fetching the data becomes a 2-step process: clients would get the connection details to the source from orchestrator (discovery call), then connect to source from client side.
 
 ![aggregation with references](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-references.png){: width="600" class="normal"}
 
-### Pros and cons
-Pros:
-* a
+The challenging part of this approach is providing the source connection details that would work for all client applications. The aggregation service doesn't control the client application deployments. So the source that is reachable from one client application can be blocked from another.
 
-Cons:
-* b
+Using the discovery call is another convention that needs to be followed by client applications, so this approach is prone to erosion of conventions.
 
 ## **Aggregation with routing**
 
+In this model the aggregator is routing the client's request to respective source.
 
 ![aggregation with routing](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-routing.png){: width="600" class="normal"}
 
+### Pros and conservation
+Pros:
+
+Cons:
+
+### Responsibilities
+The responsibility of the aggregator is to make a bookkeeping of source metadata (data dictionary), provide the visibility into routing details (underlying sources, execution plan, latencies, datacenter hops).
+
 ## **Aggregation with cache**
 
-In this model the data from multiple sources is collected into the centralized cache. Clients receive data from the cache instead of actual sources. Architecturally this model is prone to mismatches between the cache and the source, but organizationally it's surprisingly stable! This aggregation type will likely have better chances to get additional resources/funding/organizational support than other types of aggregation. The reason behind it is the presence of data that adds weight to this type of aggregators. When some team will look for data, the aggregator will be the final stop.
+In this model the data from multiple sources is collected into the centralized cache. Clients receive data from the cache instead of actual sources.
+
+Architecturally this model is prone to mismatches between the cache and the source, but organizationally it's surprisingly stable! This aggregation type will likely have better chances to get additional resources/funding/organizational support than other types of aggregation. The reason behind it is the presence of data that adds weight to this type of aggregators. When some team will look for data, the aggregator will be the final stop.
 
 ![aggregation with cache](/assets/img/sample/2022-08-24-data-aggregators/aggregation-with-cache.png){: width="600" class="normal"}
 _note the reversed arrows between aggregator and sources_
